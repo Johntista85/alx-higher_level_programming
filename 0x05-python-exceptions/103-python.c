@@ -37,7 +37,7 @@ void print_python_list(PyObject *p)
 
 	for (n = 0; n < size; n++)
 	{
-		type = list->ob_item[i]->ob_type->tp_name;
+		type = list->ob_item[n]->ob_type->tp_name;
 		printf("Element %ld: %s\n", n, type);
 		if (strcmp(type, "bytes") == 0)
 			print_python_bytes(list->ob_item[n]);
@@ -91,7 +91,7 @@ void print_python_bytes(PyObject *p)
 
 void print_python_float(PyObject *p)
 {
-	char *buffer = NULL;
+	char *bufer = NULL;
 
 	PyFloatObject *float_obj = (PyFloatObject *)p;
 
@@ -106,6 +106,6 @@ void print_python_float(PyObject *p)
 
 	buffer = PyOS_double_to_string(float_obj->ob_fval, 'r', 0,
 			Py_DTSF_ADD_DOT_0, NULL);
-	printf("  value: %s\n", buffer);
+	printf("  value: %s\n", bufer);
 	PyMem_Free(bufer);
 }
