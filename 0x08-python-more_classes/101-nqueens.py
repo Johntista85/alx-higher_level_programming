@@ -81,21 +81,21 @@ def new_queen_safe(board, row, col):
     conflict is found.
 
     """
-    r = row
-    c = col
+    x = row
+    y = col
 
-    for j in range(1, N):
-        if (c - j) >= 0:
+    for i in range(1, N):
+        if (y - i) >= 0:
             # check up-left diagonal
-            if (r - j) >= 0:
-                if board[r - j][c - j]:
+            if (x - i) >= 0:
+                if board[x - i][y - i]:
                     return False
             # check left
-            if board[r][c - j]:
+            if board[x][y - i]:
                 return False
             # check down-left diagonal
-            if (r + j) < N:
-                if board[r + j][c - j]:
+            if (x + i) < N:
+                if board[x + i][y - i]:
                     return False
     return True
 
@@ -117,11 +117,11 @@ def coordinate_format(candidates):
 
     """
     holberton = []
-    for r, attempt in enumerate(candidates):
+    for x, attempt in enumerate(candidates):
         holberton.append([])
-        for j, row in enumerate(attempt):
+        for i, row in enumerate(attempt):
             holberton[x].append([])
-            for i, col in enumerate(row):
+            for j, col in enumerate(row):
                 if col:
                     holberton[x][i].append(i)
                     holberton[x][i].append(j)
