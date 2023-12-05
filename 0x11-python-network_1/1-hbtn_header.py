@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-"""script for testing status of web pages
+"""fetches https://alx-intranet.hbtn.io/status
 """
+
+
 if __name__ == "__main__":
     import urllib.request
-    import sys
-    url = sys.argv[1]
-    with urllib.request.urlopen(url) as response:
-        meta = response.info()
-        for header in meta._headers:
-            if header[0] == 'X-Request-Id':
-                print(header[1])
+
+    with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as res:
+        content = res.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(content.decode('utf-8')))
